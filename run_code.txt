@@ -1,0 +1,13 @@
+1. javac -d bin src/*.java
+
+2. jar cfm WaterLogger.jar manifest.txt -C bin .
+
+3.  java -jar WaterLogger.jar
+
+1,2,3.  javac -d bin src/*.java && jar cfm WaterLogger.jar manifest.txt -C bin . && java -jar WaterLogger.jar
+
+
+new updated:
+
+javac -cp ".;lib/mysql-connector-j-9.6.0.jar" -d bin src/*.java
+java -cp "bin;lib/mysql-connector-j-9.6.0.jar" WaterLoggerApp
