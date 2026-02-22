@@ -3,9 +3,9 @@ import java.util.Map;
 
 public class DatabaseHandler {
     // 1. DATABASE CONFIGURATION
-    private static final String URL = "jdbc:mysql://localhost:3006/campus_water_db";
+    private static final String URL = "jdbc:mysql://localhost:3306/campus_water_db";
     private static final String USER = "root";
-    private static final String PASS = "250906"; 
+    private static final String PASS = "";
 
     // 2. LOAD DATA (SELECT)
     public static void loadFromDB(Map<String, Dispenser> database) {
