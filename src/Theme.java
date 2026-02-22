@@ -13,7 +13,6 @@ public class Theme {
     public static final Font SUBHEADER_FONT = new Font("Segoe UI", Font.PLAIN, 16);
     public static final Font NORMAL_FONT = new Font("Segoe UI", Font.PLAIN, 14);
 
-    // --- HELPER: STYLE A BUTTON ---
     public static void styleButton(JButton btn) {
         btn.setBackground(PRIMARY);
         btn.setForeground(ACCENT);
@@ -23,12 +22,10 @@ public class Theme {
         btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
-    // --- HELPER: STYLE A PANEL ---
     public static void stylePanel(JPanel panel) {
         panel.setBackground(SECONDARY);
     }
     
-    // --- HELPER: STYLE A TEXT FIELD ---
     public static void styleTextField(JTextField txt) {
         txt.setFont(NORMAL_FONT);
         txt.setBorder(BorderFactory.createCompoundBorder(
