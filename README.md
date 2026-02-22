@@ -48,7 +48,8 @@
 
 3.  **Run via Command Line:**
     ```bash
-    java -cp "bin;lib/mysql-connector-j-8.0.33.jar" WaterLoggerApp
+    1. javac -cp ".;lib/mysql-connector-j-9.6.0.jar" -d bin src/*.java
+    2. java -cp "bin;lib/mysql-connector-j-9.6.0.jar" WaterLoggerApp
     ```
 
 ---
