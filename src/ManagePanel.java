@@ -51,15 +51,17 @@ public class ManagePanel extends JPanel {
                     JOptionPane.showMessageDialog(this, "ID already exists!");
                     return;
                 }
-                Dispenser newDispenser = new Dispenser(id, loc, 0, "08:00 AM");
-                WaterLoggerApp.database.put(id, newDispenser);
                 
+                Dispenser newDispenser = new Dispenser(id, loc, 0, "08:00 AM");
+                
+                // FIXED: Only add to local memory if the DB insert is successful
                 if(DatabaseHandler.insertDispenser(newDispenser)) {
+                    WaterLoggerApp.database.put(id, newDispenser);
                     StaffPanel.refreshList();
                     clearFields();
                     JOptionPane.showMessageDialog(this, "Added!");
                 } else {
-                    JOptionPane.showMessageDialog(this, "Database Error!");
+                    JOptionPane.showMessageDialog(this, "Database Error: Could not add to database.");
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Please fill both fields.");
@@ -74,12 +76,14 @@ public class ManagePanel extends JPanel {
             if(!id.isEmpty() && !loc.isEmpty()) {
                 if(WaterLoggerApp.database.containsKey(id)) {
                     Dispenser d = WaterLoggerApp.database.get(id);
+                    String oldLoc = d.location;
                     d.location = loc; // Update the memory object
                     
                     if(DatabaseHandler.updateDispenser(d)) {
                         clearFields();
                         JOptionPane.showMessageDialog(this, "Updated!");
                     } else {
+                        d.location = oldLoc; // Revert memory change if DB fails
                         JOptionPane.showMessageDialog(this, "Database Error!");
                     }
                 } else {
@@ -99,9 +103,8 @@ public class ManagePanel extends JPanel {
                     int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete ID: " + id + "?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
                     
                     if(confirm == JOptionPane.YES_OPTION) {
-                        WaterLoggerApp.database.remove(id); // Remove from memory
-                        
                         if(DatabaseHandler.deleteDispenser(id)) {
+                            WaterLoggerApp.database.remove(id); // Remove from memory ONLY if DB delete succeeds
                             StaffPanel.refreshList();
                             clearFields();
                             JOptionPane.showMessageDialog(this, "Deleted!");
