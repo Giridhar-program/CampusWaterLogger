@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class DatabaseHandler {
     // UPDATE THESE WITH YOUR MYSQL CREDENTIALS
-    private static final String URL = "jdbc:mysql://localhost:3306/campus_facilities";
+    private static final String URL = "jdbc:mysql://localhost:3006/campus_facilities";
     private static final String USER = "root";
 
     private static final String PASS = "250906"; 
