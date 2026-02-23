@@ -2,8 +2,7 @@ import java.sql.*;
 import java.util.Map;
 
 public class DatabaseHandler {
-    // FIXED: Changed port from 3006 to the standard 3306
-    private static final String URL = "jdbc:mysql://localhost:3306/campus_water_db";
+    private static final String URL = "jdbc:mysql://localhost:3006/campus_water_db";
     private static final String USER = "root";
     private static final String PASS = "250906"; 
 

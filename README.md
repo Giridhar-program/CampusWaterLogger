@@ -1,82 +1,73 @@
 # Campus Drinking Water Refill Logger 💧
 
-### 👨‍💻 Team Members
-* **Member 1:** Jerin Mathew - 24UBC134
-* **Member 2:** Giridhar Girish - 24UBC130
+A Java-based desktop application designed to track, manage, and log daily water dispenser refills across a campus. Built with Java Swing for the graphical user interface and JDBC for MySQL database integration, this application features a complete set of CRUD (Create, Read, Update, Delete) operations.
 
----
+## ✨ Features
 
-### 📌 Problem Statement & Objective
-**Problem:** Managing water dispensers across a large campus is difficult. Manual logs are often lost, illegible, or inaccurate, leading to dispensers running empty or maintenance being missed.
+* **Secure Access:** A login screen to prevent unauthorized access to the system.
+* **Staff Logging Panel:** Allows staff to quickly select a dispenser and log a new refill with a single click, automatically updating the timestamp and daily count.
+* **Admin Dashboard:** Provides a real-time, read-only overview of all dispensers, their locations, and their daily refill statistics.
+* **Management Panel (CRUD):** * **Create:** Add new dispensers to the campus network.
+    * **Read:** Real-time synchronization with the MySQL database.
+    * **Update:** Modify the location of existing dispensers.
+    * **Delete:** Remove dispensers from the system securely.
+* **Ocean Theme UI:** A custom, cohesive color palette and styling applied across all panels for a modern look.
 
-**Objective:** To develop a Java-based GUI application that digitizes the refill logging process. This system allows staff to log refills instantly and provides administrators with a clean, easy-to-read dashboard to monitor water availability and refill frequency in real-time.
+## 🛠️ Prerequisites
 
----
+Before you begin, ensure you have met the following requirements:
+* **Java Development Kit (JDK):** Version 8 or higher installed.
+* **MySQL Server:** Installed and running on your local machine.
+* **MySQL Connector/J:** The official JDBC driver for MySQL (`mysql-connector-j-x.x.x.jar`) must be downloaded to connect Java to your database.
 
-### 🚀 Features
-* **Role-Based Access:** Separate tabs for Staff (Data Entry), Admins (Monitoring), and Management (Adding new dispensers).
-* **Live Statistics Dashboard:** A clean, text-based Admin view that automatically refreshes to show the latest refill counts and service times for every campus dispenser.
-* **Data Persistence:** Uses **MySQL Database** to store refill history permanently so no data is lost when the app closes.
-* **Modern UI:** A custom "Ocean Blue" design theme using Java Swing with streamlined, user-friendly layouts.
+## 🗄️ Database Setup
 
-### 🛠 Technologies Used
-* **Language:** Java (JDK 17+)
-* **GUI:** Java Swing
-* **Database:** MySQL (via XAMPP)
-* **Connectivity:** JDBC (MySQL Connector/J)
+1. Open your MySQL client (e.g., MySQL Workbench, phpMyAdmin, or terminal).
+2. Run the following SQL script to create the necessary database and table:
 
----
+```sql
+CREATE DATABASE IF NOT EXISTS campus_water_db;
+USE campus_water_db;
 
-### ⚙️ Steps to Run the Program
+CREATE TABLE dispenser_logs (
+    id VARCHAR(50) PRIMARY KEY,
+    location VARCHAR(100) NOT NULL,
+    refills_today INT DEFAULT 0,
+    last_refill_time VARCHAR(20)
+);
+Run the Application: You must include the MySQL Connector JAR file in your classpath when running the program.
 
-1.  **Setup Database:**
-    * Open XAMPP and start **MySQL**.
-    * Create a database named `campus_water_db`.
-    * Run the following SQL script to create the table:
-        ```sql
-        CREATE TABLE dispensers (
-            id VARCHAR(10) PRIMARY KEY,
-            location VARCHAR(100),
-            refills_today INT,
-            last_refill_time VARCHAR(20)
-        );
-        ```
+On Windows:
 
-2.  **Configure Project:**
-    * Ensure the MySQL Connector (`mysql-connector-j-8.x.x.jar`) is placed inside a `lib` folder in your project directory.
+```
+javac -cp ".;lib/mysql-connector-j-9.6.0.jar" -d bin src/*.java
+java -cp "bin;lib/mysql-connector-j-9.6.0.jar" ApplicationLauncher
+```
+On Mac/Linux:
 
-3.  **Compile and Run via Command Line (Windows):**
-    ```bash
-        javac -cp ".;lib/mysql-connector-j-9.6.0.jar" -d bin src/*.java
-        java -cp "bin;lib/mysql-connector-j-9.6.0.jar" WaterLoggerApp
-    ```
-    *(Note: If evaluating on Mac/Linux, replace the semicolons `;` with colons `:` in the commands above).*
+```
+java -cp ".:path/to/mysql-connector-j-8.x.x.jar" ApplicationLauncher
+```
+🔐 Default Login Credentials
+When the application launches, use the following dummy credentials to bypass the login screen:
 
----
+Username: admin
 
-### 📸 Screenshots
+Password: password
 
-#### 1. Staff Interface (Log Entry)
-![Staff View](screenshots/StaffPanel.png)
+📁 File Structure
+ApplicationLauncher.java: Application entry point and Login Screen.
 
-#### 2. Admin Dashboard (Live Statistics)
-![Admin Stats](screenshots/AdminPanel.png)
+WaterLoggerApp.java: Main frame holding the tabbed interface.
 
----
+DatabaseHandler.java: Manages the JDBC connection and handles all SQL queries.
 
-### 🧪 Sample Input & Output
+Dispenser.java: The core data model object.
 
-**Scenario:** A staff member logs a refill for the Library dispenser.
+StaffPanel.java: GUI for logging refills.
 
-* **Input (Staff Panel):**
-    * Select ID: `D-101`
-    * Action: Click "LOG REFILL NOW"
-* **Output (System):**
-    * UI Popup: "Refill Logged!"
-    * Database Update: `refills_today` value increases by 1 in the MySQL table.
-    * Admin Dashboard: The live text view updates instantly to show the new refill count and the exact time it was serviced for `D-101`.
+AdminPanel.java: GUI for viewing daily statistics.
 
----
+ManagePanel.java: GUI for executing Create, Update, and Delete operations.
 
-### 🎥 Video Demo
-[Click here to watch the project demo](LINK_TO_YOUR_YOUTUBE_VIDEO)
+Theme.java: Centralized styling constants and UI methods.
