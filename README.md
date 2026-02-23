@@ -1,5 +1,8 @@
 # Campus Drinking Water Refill Logger 💧
 
+Team Members:    1. Giridhar Girish - 24UBC130
+                 2. Jerin Mathew - 24UBC134
+
 A Java-based desktop application designed to track, manage, and log daily water dispenser refills across a campus. Built with Java Swing for the graphical user interface and JDBC for MySQL database integration, this application features a complete set of CRUD (Create, Read, Update, Delete) operations.
 
 ## ✨ Features
@@ -36,7 +39,7 @@ CREATE TABLE dispenser_logs (
     last_refill_time VARCHAR(20)
 );
 Run the Application: You must include the MySQL Connector JAR file in your classpath when running the program.
-
+```
 On Windows:
 
 ```
