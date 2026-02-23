@@ -5,7 +5,9 @@ public class DatabaseHandler {
     // UPDATE THESE WITH YOUR MYSQL CREDENTIALS
     private static final String URL = "jdbc:mysql://localhost:3306/campus_facilities";
     private static final String USER = "root";
-    private static final String PASS = "your_mysql_password"; // Replace with your password
+
+    private static final String PASS = "250906"; 
+
 
     // Establish Connection
     private static Connection connect() throws SQLException {
