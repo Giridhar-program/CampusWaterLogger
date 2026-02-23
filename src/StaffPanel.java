@@ -68,6 +68,8 @@ public class StaffPanel extends JPanel {
                 DatabaseHandler.updateDispenser(d); 
                 
                 JOptionPane.showMessageDialog(this, "Refill Logged!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please select a dispenser first.");
             }
         });
     }
